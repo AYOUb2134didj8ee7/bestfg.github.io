@@ -1,43 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Discord Shop</title>
+  <meta charset="UTF-8">
+  <title>RealityShop</title>
+
   <style>
-    body { background:#0f0f0f; color:white; font-family:Arial; }
-    .card {
-      background:#1a1a1a;
-      width:250px;
-      padding:15px;
-      border-radius:10px;
-      display:inline-block;
-      margin:10px;
+    body {
+      background:#0f0f0f;
+      color:white;
+      font-family:Arial;
       text-align:center;
     }
-    img { width:100%; border-radius:8px; }
-    a {
-      display:block;
+
+    h1 {
+      margin-top:40px;
+      color:#5865F2;
+    }
+
+    .subtitle {
+      margin-bottom:40px;
+      color:#ccc;
+    }
+
+    .card {
+      background:#1a1a1a;
+      width:260px;
+      padding:15px;
+      border-radius:12px;
+      display:inline-block;
+      margin:15px;
+    }
+
+    .card img {
+      width:100%;
+      border-radius:10px;
+    }
+
+    .title {
+      font-size:18px;
       margin-top:10px;
-      padding:10px;
+    }
+
+    .price {
+      color:#00ff99;
+      margin:8px 0;
+    }
+
+    .btn {
+      display:block;
       background:#5865F2;
       color:white;
       text-decoration:none;
+      padding:10px;
       border-radius:6px;
+      margin-top:10px;
+    }
+
+    .btn:hover {
+      background:#4752c4;
     }
   </style>
 </head>
 
 <body>
 
-<h2>Our Services</h2>
+  <h1>Welcome to RealityShop</h1>
+  <p class="subtitle">SAMP Scripts • Hosting • Services</p>
 
-<div class="card">
-  <img src="hosting.png">
-  <h3>Hosting 20 Slots</h3>
-  <p>12 DT</p>
-  <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">
-    Order Now
-  </a>
-</div>
+  <!-- CARD 1 -->
+  <div class="card">
+    <img src="hosting.png">
+    <div class="title">SAMP Hosting</div>
+    <div class="price">From 12DT</div>
+    <a class="btn" href="https://discord.gg/YOURDISCORD">Order Now</a>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="card">
+    <img src="samp.png">
+    <div class="title">SAMP Script</div>
+    <div class="price">Price: DM</div>
+    <a class="btn" href="https://discord.gg//M3AtP4PZsJ">Buy Script</a>
+  </div>
+
+  <p style="margin-top:40px;">
+    Join our Discord for more info
+  </p>
 
 </body>
 </html>
