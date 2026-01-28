@@ -5,51 +5,6 @@
 <title>Reality Hosting</title>
 
 <style>
-
-body {
-  font-family: Arial;
-  background: #0f172a;
-  color: white;
-}
-
-.login-box {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.8);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.login-box input {
-  padding: 10px;
-  width: 250px;
-  margin: 10px 0;
-}
-
-.login-box button {
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.top-bar {
-  padding: 15px;
-}
-
-.clients {
-  padding: 15px;
-}
-
-.hidden {
-  display: none;
-}
-
-.client {
-  margin: 5px 0;
-}
-
-
 body{
   margin:0;
   font-family: Arial, sans-serif;
@@ -85,20 +40,23 @@ h1{
 .card{
   background:#140000;
   width:260px;
-  border-radius:12px;
+  border-radius:15px;
   overflow:hidden;
   box-shadow:0 0 15px rgba(255,0,0,0.3);
+  position:relative;
 }
 
 .card img{
   width:100%;
   height:160px;
   object-fit:cover;
+  border-radius: 12px 12px 0 0;
 }
 
 .card-content{
   padding:15px;
   text-align:center;
+  border-radius:0 0 12px 12px;
 }
 
 .card h3{
@@ -118,229 +76,170 @@ h1{
   padding:10px;
   text-decoration:none;
   border-radius:6px;
-  transition:0.2s;
+  margin-top:5px;
 }
 
 .card a:hover{
   background:#b30000;
 }
 
-#musicIcon {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-  background: rgba(0,0,0,0.6);
-  padding: 10px;
-  border-radius: 50%;
-  user-select: none;
+#musicIcon{
+  position:fixed;
+  top:15px;
+  right:15px;
+  font-size:24px;
+  cursor:pointer;
+  background:rgba(0,0,0,0.6);
+  padding:10px;
+  border-radius:50%;
+}
+#musicIcon:hover{background: rgba(255,255,255,0.2);}
+
+.login-box{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  border-radius:10px;
 }
 
-#musicIcon:hover {
-  background: rgba(255,255,255,0.2);
+.login-box input{
+  padding:10px;
+  width:250px;
+  margin:10px 0;
+  border-radius:6px;
 }
 
+.login-box button{
+  padding:10px 20px;
+  cursor:pointer;
+  border-radius:6px;
+}
 
+.top-bar{
+  padding:15px;
+  display:flex;
+  justify-content:center;
+}
+
+.clients{
+  padding:15px;
+}
+
+.hidden{display:none;}
+
+.client{margin:5px 0;}
+
+.client-name{
+  color:red;
+  font-weight:bold;
+  margin-bottom:5px;
+}
 </style>
 </head>
 
 <body>
 
-<div class="overlay">
-
-<h1> Welcome To  RealityHosting Site Web </h1>
-
-<!-- SCRIPTS -->
-<div class="section-title"> Devloppers Zone </div>
-<div class="shop">
-
-  <div class="card">
-    <img src="script1.png">
-    <div class="card-content">
-      <h3> Normal Script </h3>
-      <div class="price"> 7DT </div>
-      <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="script2.png">
-    <div class="card-content">
-      <h3> Perfect Script </h3>
-      <div class="price"> 20DT </div>
-      <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="script3.png">
-    <div class="card-content">
-      <h3>Full RP Pack</h3>
-      <div class="price"> 40DT </div>
-      <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
-    </div>
-  </div>
-
- <div class="card">
-    <img src="textdraw1.png">
-    <div class="card-content">
-      <h3> Textdraw </h3>
-      <div class="price"> In Ticket </div>
-      <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
-    </div>
-  </div>
-
- <div class="card">
-    <img src="mapping1.png">
-    <div class="card-content">
-      <h3> Mappings </h3>
-      <div class="price"> In Ticket </div>
-      <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
-    </div>
-  </div>
-
- <div class="card">
-    <img src="systeme1.png">
-    <div class="card-content">
-      <h3> Systemes </h3>
-      <div class="price"> In Ticket </div>
-      <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
-    </div>
-  </div>
-
-
-</div>
-
-<!-- HOSTING -->
-<div class="section-title"> Hosts </div>
-<div class="shop">
-
-  <div class="card">
-    <img src="hosting1.png">
-    <div class="card-content">
-      <h3>Host Samp</h3>
-      <div class="price"> From 5DT</div>
-      <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
-    </div>
-  </div>
-
-<div class="card">
-    <img src="hosting2.png">
-    <div class="card-content">
-      <h3>Host MTA</h3>
-      <div class="price">From 10DT</div>
-      <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
-    </div>
-  </div>
-
-
-
-  <div class="card">
-    <img src="hosting3.png">
-    <div class="card-content">
-      <h3>Host Bot</h3>
-      <div class="price">From 5DT</div>
-      <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
-    </div>
-  </div>
-
-<div class="card">
-    <img src="hosting4.png">
-    <div class="card-content">
-      <h3>Host Web</h3>
-      <div class="price">Soon..</div>
-      <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
-    </div>
-  </div>
-
-<div class="card">
-    <img src="hosting5.png">
-    <div class="card-content">
-      <h3>Host Minecraft</h3>
-      <div class="price">From 2DT</div>
-      <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
-    </div>
-  </div>
-
-
-<script>
-function playMusic() {
-  const music = document.getElementById("bg-music");
-  const icon = document.getElementById("musicIcon");
-
-  if (music.paused) {
-    music.muted = false;
-    music.volume = 0.2;
-    music.play();
-    icon.innerText = "🔈";
-  } else {
-    music.pause();
-    icon.innerText = "🔊";
-  }
-}
-</script>
-
+<!-- MUSIC -->
+<audio id="bg-music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 <div id="musicIcon" onclick="playMusic()">🔊</div>
 
-
-let clients = JSON.parse(localStorage.getItem("clients")) || [];
-
-function login() {
-  const name = document.getElementById("username").value.trim();
-  if (!name) return alert("Write your Discord name");
-
-  if (!clients.find(c => c.name === name)) {
-    clients.push({ name, liked: false });
-    localStorage.setItem("clients", JSON.stringify(clients));
-  }
-
-  document.getElementById("loginBox").style.display = "none";
-  renderClients();
-}
-
-function toggleClients() {
-  document.getElementById("clients").classList.toggle("hidden");
-}
-
-function toggleLike(index) {
-  clients[index].liked = !clients[index].liked;
-  localStorage.setItem("clients", JSON.stringify(clients));
-  renderClients();
-}
-
-function renderClients() {
-  const box = document.getElementById("clients");
-  box.innerHTML = "";
-  clients.forEach((c, i) => {
-    box.innerHTML += `
-      <div class="client">
-        ${c.name} ${c.liked ? "👍" : ""}
-        <button onclick="toggleLike(${i})">Subscribe</button>
-      </div>
-    `;
-  });
-}
-
-<!-- LOGIN POPUP -->
+<!-- LOGIN -->
 <div id="loginBox" class="login-box">
   <h2>Your Discord Name</h2>
-  <input type="text" id="username" placeholder="Enter your Discord name">
+  <input id="username" placeholder="Enter your name">
   <button onclick="login()">Login</button>
 </div>
 
-<!-- TOP BAR -->
-<div class="top-bar">
-  <button onclick="toggleClients()">Our Clients</button>
+<div class="overlay">
+
+<h1> Welcome To RealityHosting Site Web </h1>
+
+<!-- DEV ZONE -->
+<div class="section-title"> Devloppers Zone </div>
+<div class="shop">
+  <div class="card"><img src="script1.png"><div class="card-content">
+    <div class="client-name" id="client0"></div>
+    <h3>Normal Script</h3><div class="price">7DT</div>
+    <button onclick="subscribe(0)">Subscribe 👍</button>
+    <div class="top-bar"><button onclick="toggleClients()">Our Clients</button></div>
+    <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
+  </div></div>
+
+  <div class="card"><img src="script2.png"><div class="card-content">
+    <div class="client-name" id="client1"></div>
+    <h3>Perfect Script</h3><div class="price">20DT</div>
+    <button onclick="subscribe(1)">Subscribe 👍</button>
+    <div class="top-bar"><button onclick="toggleClients()">Our Clients</button></div>
+    <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
+  </div></div>
+
+  <div class="card"><img src="script3.png"><div class="card-content">
+    <div class="client-name" id="client2"></div>
+    <h3>Full RP Pack</h3><div class="price">40DT</div>
+    <button onclick="subscribe(2)">Subscribe 👍</button>
+    <div class="top-bar"><button onclick="toggleClients()">Our Clients</button></div>
+    <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
+  </div></div>
 </div>
 
-<!-- CLIENTS LIST -->
 <div id="clients" class="clients hidden"></div>
+
 <script>
+let clients = JSON.parse(localStorage.getItem("clients")) || [];
 
-</div>
+function playMusic(){
+  const music=document.getElementById("bg-music");
+  const icon=document.getElementById("musicIcon");
+  if(music.paused){music.volume=0.2;music.play();icon.innerText="🔈";}
+  else{music.pause();icon.innerText="🔊";}
+}
 
-</div>
+function login(){
+  const name=document.getElementById("username").value.trim();
+  if(!name){alert("Write your Discord name"); return;}
+  localStorage.setItem("loggedUser", name);
+  document.getElementById("loginBox").style.display="none";
+}
+
+function subscribe(index){
+  const name=localStorage.getItem("loggedUser");
+  if(!name){alert("Login first!"); return;}
+  document.getElementById("client"+index).innerText=name;
+  clients.push({name:name,index:index});
+  localStorage.setItem("clients", JSON.stringify(clients));
+}
+
+function toggleClients(){
+  document.getElementById("clients").classList.toggle("hidden");
+}
+
+function renderClients(){
+  const box=document.getElementById("clients");
+  box.innerHTML="";
+  clients.forEach(c=>{
+    box.innerHTML+=`<div class="client">${c.name} 👍</div>`;
+  });
+}
+
+window.onload=function(){
+  if(localStorage.getItem("loggedUser")) document.getElementById("loginBox").style.display="none";
+  clients.forEach(c=>{
+    document.getElementById("client"+c.index).innerText=c.name;
+  });
+  renderClients();
+}
+</script>
+   Thanks For Join Our Web 
+Loled Nchlh Ykon 3jbkom Lweb W Dima Lfadhl Likom Entoma 5atrna amlin hedha lkoll likom ettoma 
+Leaderships : Lous / ZoRo
+Owners : RealityHosting Members 
+
 </body>
 </html>
-
