@@ -2,68 +2,37 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Football Matches</title>
+<title>Live Football Matches</title>
+
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background: #0f172a;
-  color: white;
-  margin: 0;
-  padding: 20px;
+body{
+  margin:0;
+  background:#0f172a;
+  font-family:Arial, sans-serif;
 }
-h1 {
-  text-align: center;
-  color: #ff2a2a;
+
+.container{
+  padding:20px;
 }
-.matches {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-.match-card {
-  background: #140000;
-  width: 250px;
-  border-radius: 12px;
-  padding: 15px;
-  text-align: center;
-  box-shadow: 0 0 15px rgba(255,0,0,0.3);
-}
-.match-card h3 {
-  margin: 10px 0 5px;
-}
-.match-card .time {
-  color: #ff4d4d;
-  font-weight: bold;
-  margin: 5px 0;
+
+iframe{
+  width:100%;
+  height:90vh;
+  border:none;
+  border-radius:15px;
+  background:white;
 }
 </style>
 </head>
+
 <body>
 
-<h1>Upcoming Football Matches</h1>
-<div class="matches" id="matches"></div>
-
-<script>
-// هنا نضيف المباريات
-const matchesData = [
-  {team1: "Team A", team2: "Team B", date: "2026-02-01", time: "18:00"},
-  {team1: "Team C", team2: "Team D", date: "2026-02-02", time: "20:30"},
-  {team1: "Team E", team2: "Team F", date: "2026-02-03", time: "16:00"},
-];
-
-const matchesContainer = document.getElementById("matches");
-
-matchesData.forEach((match) => {
-  const card = document.createElement("div");
-  card.className = "match-card";
-  card.innerHTML = `
-    <h3>${match.team1} vs ${match.team2}</h3>
-    <div class="time">${match.date} - ${match.time}</div>
-  `;
-  matchesContainer.appendChild(card);
-});
-</script>
+<div class="container">
+  <iframe 
+    src="PUT-LIVE-SCORES-LINK-HERE"
+    allowfullscreen>
+  </iframe>
+</div>
 
 </body>
 </html>
