@@ -5,6 +5,51 @@
 <title>Reality Hosting</title>
 
 <style>
+
+body {
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
+}
+
+.login-box {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box input {
+  padding: 10px;
+  width: 250px;
+  margin: 10px 0;
+}
+
+.login-box button {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.top-bar {
+  padding: 15px;
+}
+
+.clients {
+  padding: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
+.client {
+  margin: 5px 0;
+}
+
+
 body{
   margin:0;
   font-family: Arial, sans-serif;
@@ -79,6 +124,24 @@ h1{
 .card a:hover{
   background:#b30000;
 }
+
+#musicIcon {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  background: rgba(0,0,0,0.6);
+  padding: 10px;
+  border-radius: 50%;
+  user-select: none;
+}
+
+#musicIcon:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+
 </style>
 </head>
 
@@ -200,20 +263,80 @@ h1{
     </div>
   </div>
 
-<audio id="bg-music" autoplay loop muted>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<button onclick="playMusic()">🔊 Play Music</button>
 
 <script>
 function playMusic() {
   const music = document.getElementById("bg-music");
-  music.muted = false;
-  music.play();
+  const icon = document.getElementById("musicIcon");
+
+  if (music.paused) {
+    music.muted = false;
+    music.volume = 0.2;
+    music.play();
+    icon.innerText = "🔈";
+  } else {
+    music.pause();
+    icon.innerText = "🔊";
+  }
 }
 </script>
 
+<div id="musicIcon" onclick="playMusic()">🔊</div>
+
+
+let clients = JSON.parse(localStorage.getItem("clients")) || [];
+
+function login() {
+  const name = document.getElementById("username").value.trim();
+  if (!name) return alert("Write your Discord name");
+
+  if (!clients.find(c => c.name === name)) {
+    clients.push({ name, liked: false });
+    localStorage.setItem("clients", JSON.stringify(clients));
+  }
+
+  document.getElementById("loginBox").style.display = "none";
+  renderClients();
+}
+
+function toggleClients() {
+  document.getElementById("clients").classList.toggle("hidden");
+}
+
+function toggleLike(index) {
+  clients[index].liked = !clients[index].liked;
+  localStorage.setItem("clients", JSON.stringify(clients));
+  renderClients();
+}
+
+function renderClients() {
+  const box = document.getElementById("clients");
+  box.innerHTML = "";
+  clients.forEach((c, i) => {
+    box.innerHTML += `
+      <div class="client">
+        ${c.name} ${c.liked ? "👍" : ""}
+        <button onclick="toggleLike(${i})">Subscribe</button>
+      </div>
+    `;
+  });
+}
+
+<!-- LOGIN POPUP -->
+<div id="loginBox" class="login-box">
+  <h2>Your Discord Name</h2>
+  <input type="text" id="username" placeholder="Enter your Discord name">
+  <button onclick="login()">Login</button>
+</div>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <button onclick="toggleClients()">Our Clients</button>
+</div>
+
+<!-- CLIENTS LIST -->
+<div id="clients" class="clients hidden"></div>
+<script>
 
 </div>
 
