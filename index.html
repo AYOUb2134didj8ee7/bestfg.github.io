@@ -12,31 +12,26 @@ body{
   background-size: cover;
   color:white;
 }
-
 .overlay{
   background: rgba(0,0,0,0.75);
   min-height:100vh;
   padding:30px;
 }
-
 h1{
   text-align:center;
   color:#ff2a2a;
   margin-bottom:40px;
 }
-
 .section-title{
   color:#ff2a2a;
   margin:30px 0 10px;
   font-size:24px;
 }
-
 .shop{
   display:flex;
   flex-wrap:wrap;
   gap:20px;
 }
-
 .card{
   background:#140000;
   width:260px;
@@ -45,30 +40,25 @@ h1{
   box-shadow:0 0 15px rgba(255,0,0,0.3);
   position:relative;
 }
-
 .card img{
   width:100%;
   height:160px;
   object-fit:cover;
   border-radius: 12px 12px 0 0;
 }
-
 .card-content{
   padding:15px;
   text-align:center;
   border-radius:0 0 12px 12px;
 }
-
 .card h3{
   margin:5px 0;
 }
-
 .price{
   color:#ff4d4d;
   font-weight:bold;
   margin:10px 0;
 }
-
 .card a{
   display:block;
   background:#ff2a2a;
@@ -78,20 +68,46 @@ h1{
   border-radius:6px;
   margin-top:5px;
 }
+.card a:hover{background:#b30000;}
 
-.card a:hover{
-  background:#b30000;
+.client-name{
+  color:red;
+  font-weight:bold;
+  margin-bottom:5px;
+  text-align:center;
 }
+
+.card button{
+  margin-top:5px;
+  border-radius:12px;
+  padding:8px 15px;
+  background:#ff2a2a;
+  color:white;
+  border:none;
+  cursor:pointer;
+}
+.card button:hover{background:#b30000;}
+
+.top-bar button{
+  border-radius:12px;
+  background:#ff2a2a;
+  color:white;
+  padding:8px 15px;
+  cursor:pointer;
+  margin-top:8px;
+}
+.top-bar button:hover{background:#b30000;}
 
 #musicIcon{
   position:fixed;
   top:15px;
   right:15px;
-  font-size:24px;
-  cursor:pointer;
-  background:rgba(0,0,0,0.6);
-  padding:10px;
+  font-size:26px;
+  padding:12px;
   border-radius:50%;
+  background:rgba(0,0,0,0.6);
+  cursor:pointer;
+  z-index:9999;
 }
 #musicIcon:hover{background: rgba(255,255,255,0.2);}
 
@@ -106,42 +122,31 @@ h1{
   z-index:9999;
   border-radius:10px;
 }
-
 .login-box input{
   padding:10px;
   width:250px;
   margin:10px 0;
   border-radius:6px;
 }
-
 .login-box button{
   padding:10px 20px;
   cursor:pointer;
   border-radius:6px;
 }
 
-.top-bar{
-  padding:15px;
-  display:flex;
-  justify-content:center;
-}
-
 .clients{
+  background:#111;
   padding:15px;
-}
-
-.hidden{display:none;}
-
-.client{margin:5px 0;}
-
-.client-name{
-  color:red;
-  font-weight:bold;
-  margin-bottom:5px;
+  border-radius:10px;
+  max-width:250px;
+  position:fixed;
+  top:70px;
+  right:15px;
+  z-index:9998;
+  display:none;
 }
 </style>
 </head>
-
 <body>
 
 <!-- MUSIC -->
@@ -158,38 +163,49 @@ h1{
 </div>
 
 <div class="overlay">
-
 <h1> Welcome To RealityHosting Site Web </h1>
 
 <!-- DEV ZONE -->
 <div class="section-title"> Devloppers Zone </div>
 <div class="shop">
-  <div class="card"><img src="script1.png"><div class="card-content">
-    <div class="client-name" id="client0"></div>
-    <h3>Normal Script</h3><div class="price">7DT</div>
-    <button onclick="subscribe(0)">Subscribe 👍</button>
-    <div class="top-bar"><button onclick="toggleClients()">Our Clients</button></div>
-    <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
-  </div></div>
+  <div class="card">
+    <img src="script1.png">
+    <div class="card-content">
+      <div class="client-name" id="client0"></div>
+      <h3>Normal Script</h3>
+      <div class="price">7DT</div>
+      <button onclick="subscribe(0)">Subscribe 👍</button>
+      <div class="top-bar"><button onclick="toggleClients()">Our Clients</button></div>
+      <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
+    </div>
+  </div>
 
-  <div class="card"><img src="script2.png"><div class="card-content">
-    <div class="client-name" id="client1"></div>
-    <h3>Perfect Script</h3><div class="price">20DT</div>
-    <button onclick="subscribe(1)">Subscribe 👍</button>
-    <div class="top-bar"><button onclick="toggleClients()">Our Clients</button></div>
-    <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
-  </div></div>
+  <div class="card">
+    <img src="script2.png">
+    <div class="card-content">
+      <div class="client-name" id="client1"></div>
+      <h3>Perfect Script</h3>
+      <div class="price">20DT</div>
+      <button onclick="subscribe(1)">Subscribe 👍</button>
+      <div class="top-bar"><button onclick="toggleClients()">Our Clients</button></div>
+      <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
+    </div>
+  </div>
 
-  <div class="card"><img src="script3.png"><div class="card-content">
-    <div class="client-name" id="client2"></div>
-    <h3>Full RP Pack</h3><div class="price">40DT</div>
-    <button onclick="subscribe(2)">Subscribe 👍</button>
-    <div class="top-bar"><button onclick="toggleClients()">Our Clients</button></div>
-    <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
-  </div></div>
+  <div class="card">
+    <img src="script3.png">
+    <div class="card-content">
+      <div class="client-name" id="client2"></div>
+      <h3>Full RP Pack</h3>
+      <div class="price">40DT</div>
+      <button onclick="subscribe(2)">Subscribe 👍</button>
+      <div class="top-bar"><button onclick="toggleClients()">Our Clients</button></div>
+      <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
+    </div>
+  </div>
 </div>
 
-<div id="clients" class="clients hidden"></div>
+<div id="clients" class="clients"></div>
 
 <script>
 let clients = JSON.parse(localStorage.getItem("clients")) || [];
@@ -212,12 +228,15 @@ function subscribe(index){
   const name=localStorage.getItem("loggedUser");
   if(!name){alert("Login first!"); return;}
   document.getElementById("client"+index).innerText=name;
-  clients.push({name:name,index:index});
+  // Check duplicate
+  if(!clients.some(c=>c.name===name)) clients.push({name:name,index:index});
   localStorage.setItem("clients", JSON.stringify(clients));
+  renderClients();
 }
 
 function toggleClients(){
-  document.getElementById("clients").classList.toggle("hidden");
+  const box=document.getElementById("clients");
+  box.style.display=box.style.display==='block'?'none':'block';
 }
 
 function renderClients(){
@@ -229,17 +248,16 @@ function renderClients(){
 }
 
 window.onload=function(){
-  if(localStorage.getItem("loggedUser")) document.getElementById("loginBox").style.display="none";
+  const loggedUser = localStorage.getItem("loggedUser");
+  if(loggedUser) document.getElementById("loginBox").style.display="none";
   clients.forEach(c=>{
-    document.getElementById("client"+c.index).innerText=c.name;
+    if(document.getElementById("client"+c.index))
+      document.getElementById("client"+c.index).innerText=c.name;
   });
   renderClients();
 }
 </script>
-   Thanks For Join Our Web 
-Loled Nchlh Ykon 3jbkom Lweb W Dima Lfadhl Likom Entoma 5atrna amlin hedha lkoll likom ettoma 
-Leaderships : Lous / ZoRo
-Owners : RealityHosting Members 
 
+</div>
 </body>
 </html>
