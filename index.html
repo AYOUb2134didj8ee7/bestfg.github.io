@@ -2,262 +2,68 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Reality Hosting</title>
-
+<title>Football Matches</title>
 <style>
-body{
-  margin:0;
+body {
   font-family: Arial, sans-serif;
-  background: url("server-bg.jpg") no-repeat center center fixed;
-  background-size: cover;
-  color:white;
+  background: #0f172a;
+  color: white;
+  margin: 0;
+  padding: 20px;
 }
-.overlay{
-  background: rgba(0,0,0,0.75);
-  min-height:100vh;
-  padding:30px;
+h1 {
+  text-align: center;
+  color: #ff2a2a;
 }
-h1{
-  text-align:center;
-  color:#ff2a2a;
-  margin-bottom:40px;
+.matches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
-.section-title{
-  color:#ff2a2a;
-  margin:30px 0 10px;
-  font-size:24px;
+.match-card {
+  background: #140000;
+  width: 250px;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(255,0,0,0.3);
 }
-.shop{
-  display:flex;
-  flex-wrap:wrap;
-  gap:20px;
+.match-card h3 {
+  margin: 10px 0 5px;
 }
-.card{
-  background:#140000;
-  width:260px;
-  border-radius:15px;
-  overflow:hidden;
-  box-shadow:0 0 15px rgba(255,0,0,0.3);
-  position:relative;
-}
-.card img{
-  width:100%;
-  height:160px;
-  object-fit:cover;
-  border-radius: 12px 12px 0 0;
-}
-.card-content{
-  padding:15px;
-  text-align:center;
-  border-radius:0 0 12px 12px;
-}
-.card h3{
-  margin:5px 0;
-}
-.price{
-  color:#ff4d4d;
-  font-weight:bold;
-  margin:10px 0;
-}
-.card a{
-  display:block;
-  background:#ff2a2a;
-  color:white;
-  padding:10px;
-  text-decoration:none;
-  border-radius:6px;
-  margin-top:5px;
-}
-.card a:hover{background:#b30000;}
-
-.client-name{
-  color:red;
-  font-weight:bold;
-  margin-bottom:5px;
-  text-align:center;
-}
-
-.card button{
-  margin-top:5px;
-  border-radius:12px;
-  padding:8px 15px;
-  background:#ff2a2a;
-  color:white;
-  border:none;
-  cursor:pointer;
-}
-.card button:hover{background:#b30000;}
-
-.top-bar button{
-  border-radius:12px;
-  background:#ff2a2a;
-  color:white;
-  padding:8px 15px;
-  cursor:pointer;
-  margin-top:8px;
-}
-.top-bar button:hover{background:#b30000;}
-
-#musicIcon{
-  position:fixed;
-  top:15px;
-  right:15px;
-  font-size:26px;
-  padding:12px;
-  border-radius:50%;
-  background:rgba(0,0,0,0.6);
-  cursor:pointer;
-  z-index:9999;
-}
-#musicIcon:hover{background: rgba(255,255,255,0.2);}
-
-.login-box{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.85);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-  border-radius:10px;
-}
-.login-box input{
-  padding:10px;
-  width:250px;
-  margin:10px 0;
-  border-radius:6px;
-}
-.login-box button{
-  padding:10px 20px;
-  cursor:pointer;
-  border-radius:6px;
-}
-
-.clients{
-  background:#111;
-  padding:15px;
-  border-radius:10px;
-  max-width:250px;
-  position:fixed;
-  top:70px;
-  right:15px;
-  z-index:9998;
-  display:none;
+.match-card .time {
+  color: #ff4d4d;
+  font-weight: bold;
+  margin: 5px 0;
 }
 </style>
 </head>
 <body>
 
-<!-- MUSIC -->
-<audio id="bg-music" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-<div id="musicIcon" onclick="playMusic()">🔊</div>
-
-<!-- LOGIN -->
-<div id="loginBox" class="login-box">
-  <h2>Your Discord Name</h2>
-  <input id="username" placeholder="Enter your name">
-  <button onclick="login()">Login</button>
-</div>
-
-<div class="overlay">
-<h1> Welcome To RealityHosting Site Web </h1>
-
-<!-- DEV ZONE -->
-<div class="section-title"> Devloppers Zone </div>
-<div class="shop">
-  <div class="card">
-    <img src="script1.png">
-    <div class="card-content">
-      <div class="client-name" id="client0"></div>
-      <h3>Normal Script</h3>
-      <div class="price">7DT</div>
-      <button onclick="subscribe(0)">Subscribe 👍</button>
-      <div class="top-bar"><button onclick="toggleClients()">Our Clients</button></div>
-      <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="script2.png">
-    <div class="card-content">
-      <div class="client-name" id="client1"></div>
-      <h3>Perfect Script</h3>
-      <div class="price">20DT</div>
-      <button onclick="subscribe(1)">Subscribe 👍</button>
-      <div class="top-bar"><button onclick="toggleClients()">Our Clients</button></div>
-      <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="script3.png">
-    <div class="card-content">
-      <div class="client-name" id="client2"></div>
-      <h3>Full RP Pack</h3>
-      <div class="price">40DT</div>
-      <button onclick="subscribe(2)">Subscribe 👍</button>
-      <div class="top-bar"><button onclick="toggleClients()">Our Clients</button></div>
-      <a href="https://discord.gg/M3AtP4PZsJ" target="_blank">Order Now</a>
-    </div>
-  </div>
-</div>
-
-<div id="clients" class="clients"></div>
+<h1>Upcoming Football Matches</h1>
+<div class="matches" id="matches"></div>
 
 <script>
-let clients = JSON.parse(localStorage.getItem("clients")) || [];
+// هنا نضيف المباريات
+const matchesData = [
+  {team1: "Team A", team2: "Team B", date: "2026-02-01", time: "18:00"},
+  {team1: "Team C", team2: "Team D", date: "2026-02-02", time: "20:30"},
+  {team1: "Team E", team2: "Team F", date: "2026-02-03", time: "16:00"},
+];
 
-function playMusic(){
-  const music=document.getElementById("bg-music");
-  const icon=document.getElementById("musicIcon");
-  if(music.paused){music.volume=0.2;music.play();icon.innerText="🔈";}
-  else{music.pause();icon.innerText="🔊";}
-}
+const matchesContainer = document.getElementById("matches");
 
-function login(){
-  const name=document.getElementById("username").value.trim();
-  if(!name){alert("Write your Discord name"); return;}
-  localStorage.setItem("loggedUser", name);
-  document.getElementById("loginBox").style.display="none";
-}
-
-function subscribe(index){
-  const name=localStorage.getItem("loggedUser");
-  if(!name){alert("Login first!"); return;}
-  document.getElementById("client"+index).innerText=name;
-  // Check duplicate
-  if(!clients.some(c=>c.name===name)) clients.push({name:name,index:index});
-  localStorage.setItem("clients", JSON.stringify(clients));
-  renderClients();
-}
-
-function toggleClients(){
-  const box=document.getElementById("clients");
-  box.style.display=box.style.display==='block'?'none':'block';
-}
-
-function renderClients(){
-  const box=document.getElementById("clients");
-  box.innerHTML="";
-  clients.forEach(c=>{
-    box.innerHTML+=`<div class="client">${c.name} 👍</div>`;
-  });
-}
-
-window.onload=function(){
-  const loggedUser = localStorage.getItem("loggedUser");
-  if(loggedUser) document.getElementById("loginBox").style.display="none";
-  clients.forEach(c=>{
-    if(document.getElementById("client"+c.index))
-      document.getElementById("client"+c.index).innerText=c.name;
-  });
-  renderClients();
-}
+matchesData.forEach((match) => {
+  const card = document.createElement("div");
+  card.className = "match-card";
+  card.innerHTML = `
+    <h3>${match.team1} vs ${match.team2}</h3>
+    <div class="time">${match.date} - ${match.time}</div>
+  `;
+  matchesContainer.appendChild(card);
+});
 </script>
 
-</div>
 </body>
 </html>
