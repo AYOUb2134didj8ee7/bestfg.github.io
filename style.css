@@ -1,46 +1,14 @@
 body {
-  margin: 0;
+  text-align: center;
   font-family: Arial, sans-serif;
   background: #0f172a;
   color: white;
 }
 
-header {
-  text-align: center;
-  padding: 20px;
-  background: #020617;
+canvas {
+  background: #22c55e;
+  border: 3px solid white;
+  display: block;
+  margin: 0 auto;
 }
 
-#clock {
-  color: #38bdf8;
-  font-size: 18px;
-}
-
-main {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 15px;
-  padding: 20px;
-}
-
-.match {
-  background: #020617;
-  border-radius: 10px;
-  padding: 15px;
-  text-align: center;
-}
-
-.teams {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.score {
-  font-size: 32px;
-  color: #22c55e;
-}
-
-.time {
-  margin-top: 8px;
-  color: #94a3b8;
-}
