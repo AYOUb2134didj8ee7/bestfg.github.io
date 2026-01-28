@@ -200,6 +200,20 @@ h1{
     </div>
   </div>
 
+<audio id="bg-music" autoplay loop muted>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button onclick="playMusic()">🔊 Play Music</button>
+
+<script>
+function playMusic() {
+  const music = document.getElementById("bg-music");
+  music.muted = false;
+  music.play();
+}
+</script>
+
 
 </div>
 
