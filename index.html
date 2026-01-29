@@ -1,209 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>eFootball Offline 2026</title>
+<meta charset="UTF-8">
+<title>Football Offline 2026</title>
+<link rel="icon" href="icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Icon -->
-    <link rel="icon" type="image/png" href="icon.png">
-
-    <!-- Responsive -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #0a0f1c, #0f172a);
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .game-container {
-            width: 95%;
-            max-width: 1100px;
-            background: #020617;
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 0 40px rgba(0,255,255,0.2);
-        }
-
-        .header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .header img {
-            width: 60px;
-            height: 60px;
-        }
-
-        .header h1 {
-            font-size: 28px;
-            color: #38bdf8;
-        }
-
-        .stadium {
-            background: url("https://i.imgur.com/4NJl2fQ.jpg");
-            background-size: cover;
-            border-radius: 15px;
-            height: 420px;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-
-        .scoreboard {
-            position: absolute;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,0,0,0.7);
-            padding: 10px 25px;
-            border-radius: 10px;
-            font-size: 20px;
-            display: flex;
-            gap: 20px;
-        }
-
-        .time {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: rgba(0,0,0,0.7);
-            padding: 8px 15px;
-            border-radius: 10px;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .controls button {
-            background: #0284c7;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 10px;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-
-        .controls button:hover {
-            background: #38bdf8;
-            transform: scale(1.05);
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 15px;
-            opacity: 0.6;
-            font-size: 14px;
-        }
-    </style>
+<style>
+body {
+    margin: 0;
+    background: #020617;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+}
+canvas {
+    background: #166534;
+    display: block;
+    margin: 20px auto;
+    border-radius: 15px;
+}
+.score {
+    font-size: 20px;
+}
+</style>
 </head>
+
 <body>
 
-<div class="game-container">
-
-    <div class="header">
-        <img src="icon.png" alt="Game Icon">
-        <h1>eFootball Offline 2026</h1>
-    </div>
-
-    <div class="stadium">
-
-        <div class="scoreboard">
-            <span id="teamA">YOU</span>
-            <strong id="score">0 - 0</strong>
-            <span id="teamB">AI</span>
-        </div>
-
-        <div class="time">
-            ⏱ <span id="time">00:00</span>
-        </div>
-
-    </div>
-
-    <div class="controls">
-        <button onclick="startMatch()">▶ Start Match</button>
-        <button onclick="goalYou()">⚽ Goal YOU</button>
-        <button onclick="goalAI()">🤖 Goal AI</button>
-        <button onclick="resetMatch()">🔄 Reset</button>
-    </div>
-
-    <div class="footer">
-        Offline Football Game • AI Ready • 2026
-    </div>
-
+<h2>⚽ Football Offline vs AI</h2>
+<div class="score">
+YOU <span id="ys">0</span> - <span id="as">0</span> AI | ⏱ <span id="time">0</span>
 </div>
 
+<canvas id="game" width="900" height="500"></canvas>
+
+<p>🎮 Move: WASD | Shoot: SPACE</p>
+
 <script>
-    let minute = 0;
-    let second = 0;
-    let timer;
-    let youScore = 0;
-    let aiScore = 0;
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
 
-    function startMatch() {
-        clearInterval(timer);
-        timer = setInterval(() => {
-            second++;
-            if (second === 60) {
-                second = 0;
-                minute++;
-            }
+let youScore = 0, aiScore = 0;
+let time = 0;
 
-            document.getElementById("time").innerText =
-                String(minute).padStart(2, "0") + ":" +
-                String(second).padStart(2, "0");
+const player = {
+    x: 200, y: 250, r: 15, speed: 4
+};
 
-            if (minute === 90) {
-                clearInterval(timer);
-                alert("🏁 Match Ended!");
-            }
-        }, 1000);
+const ai = {
+    x: 700, y: 250, r: 15, speed: 2.5
+};
+
+const ball = {
+    x: 450, y: 250, r: 8, vx: 0, vy: 0
+};
+
+const keys = {};
+
+document.addEventListener("keydown", e => keys[e.code] = true);
+document.addEventListener("keyup", e => keys[e.code] = false);
+
+function resetBall() {
+    ball.x = 450;
+    ball.y = 250;
+    ball.vx = 0;
+    ball.vy = 0;
+}
+
+function distance(a, b) {
+    return Math.hypot(a.x - b.x, a.y - b.y);
+}
+
+function update() {
+
+    // Player movement
+    if (keys["KeyW"]) player.y -= player.speed;
+    if (keys["KeyS"]) player.y += player.speed;
+    if (keys["KeyA"]) player.x -= player.speed;
+    if (keys["KeyD"]) player.x += player.speed;
+
+    // Shoot
+    if (keys["Space"] && distance(player, ball) < 20) {
+        ball.vx = 6;
+        ball.vy = (ball.y - player.y) / 4;
     }
 
-    function goalYou() {
-        youScore++;
-        updateScore();
+    // AI follows ball
+    if (ball.y > ai.y) ai.y += ai.speed;
+    if (ball.y < ai.y) ai.y -= ai.speed;
+
+    if (distance(ai, ball) < 20) {
+        ball.vx = -5;
+        ball.vy = (ball.y - ai.y) / 4;
     }
 
-    function goalAI() {
+    // Ball physics
+    ball.x += ball.vx;
+    ball.y += ball.vy;
+    ball.vx *= 0.99;
+    ball.vy *= 0.99;
+
+    // Goals
+    if (ball.x < 0) {
         aiScore++;
-        updateScore();
+        resetBall();
+    }
+    if (ball.x > canvas.width) {
+        youScore++;
+        resetBall();
     }
 
-    function updateScore() {
-        document.getElementById("score").innerText =
-            youScore + " - " + aiScore;
-    }
+    document.getElementById("ys").innerText = youScore;
+    document.getElementById("as").innerText = aiScore;
+}
 
-    function resetMatch() {
-        clearInterval(timer);
-        minute = 0;
-        second = 0;
-        youScore = 0;
-        aiScore = 0;
-        document.getElementById("time").innerText = "00:00";
-        updateScore();
-    }
+function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    // Mid line
+    ctx.strokeStyle = "#fff";
+    ctx.beginPath();
+    ctx.moveTo(450,0);
+    ctx.lineTo(450,500);
+    ctx.stroke();
+
+    // Player
+    ctx.fillStyle = "#38bdf8";
+    ctx.beginPath();
+    ctx.arc(player.x, player.y, player.r, 0, Math.PI*2);
+    ctx.fill();
+
+    // AI
+    ctx.fillStyle = "#ef4444";
+    ctx.beginPath();
+    ctx.arc(ai.x, ai.y, ai.r, 0, Math.PI*2);
+    ctx.fill();
+
+    // Ball
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI*2);
+    ctx.fill();
+}
+
+function loop() {
+    update();
+    draw();
+    requestAnimationFrame(loop);
+}
+
+setInterval(()=>{
+    time++;
+    document.getElementById("time").innerText = time;
+},1000);
+
+loop();
 </script>
 
 </body>
