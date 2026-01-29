@@ -16,12 +16,21 @@ joinBtn.onclick = () => {
 // Load teams
 function loadTeams() {
     teamsList.innerHTML = "";
+
     teams.forEach(team => {
         const div = document.createElement("div");
         div.className = "team";
+
         div.innerHTML = `
             <img src="${team.icon}">
             <strong>${team.name}</strong>
+
+            <div class="stats">
+                Attack
+                <div class="bar"><span style="width:${team.attack}%"></span></div>
+                Defense
+                <div class="bar"><span style="width:${team.defense}%"></span></div>
+            </div>
         `;
 
         div.onclick = () => selectTeam(team, div);
