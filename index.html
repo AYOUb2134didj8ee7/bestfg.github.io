@@ -2,157 +2,26 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Football 3D Offline 2026</title>
+<title>Best Football Game 2026</title>
 <link rel="icon" href="icon.png">
+<link rel="stylesheet" href="css/style.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-body {
-    margin: 0;
-    overflow: hidden;
-    background: black;
-    color: white;
-    font-family: Arial;
-}
-#ui {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0,0,0,0.6);
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 18px;
-}
-</style>
 </head>
 
 <body>
 
-<div id="ui">
-⚽ YOU 0 - 0 AI | ⏱ <span id="time">0</span>
+<div id="welcome" class="screen active">
+    <h1>⚽ Welcome To Best Football Game</h1>
+    <button id="joinBtn">JOIN</button>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+<div id="teams" class="screen">
+    <h2>Choose Your Team</h2>
+    <div id="teamsList"></div>
+    <button id="startBtn" disabled>START GAME</button>
+</div>
 
-<script>
-// ================= SCENE =================
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x0a0a0a);
-
-// ================= CAMERA =================
-const camera = new THREE.PerspectiveCamera(
-    60,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000
-);
-camera.position.set(0, 35, 45);
-camera.lookAt(0, 0, 0);
-
-// ================= RENDERER =================
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
-
-// ================= LIGHT =================
-scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-const light = new THREE.DirectionalLight(0xffffff, 0.8);
-light.position.set(10, 50, 10);
-scene.add(light);
-
-// ================= FIELD =================
-const field = new THREE.Mesh(
-    new THREE.PlaneGeometry(100, 60),
-    new THREE.MeshStandardMaterial({ color: 0x166534 })
-);
-field.rotation.x = -Math.PI / 2;
-scene.add(field);
-
-// Mid line
-const line = new THREE.Mesh(
-    new THREE.PlaneGeometry(0.5, 60),
-    new THREE.MeshBasicMaterial({ color: 0xffffff })
-);
-line.rotation.x = -Math.PI / 2;
-scene.add(line);
-
-// ================= PLAYER =================
-const player = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.2, 1.2, 4, 16),
-    new THREE.MeshStandardMaterial({ color: 0x38bdf8 })
-);
-player.position.set(-20, 2, 0);
-scene.add(player);
-
-// ================= AI =================
-const ai = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.2, 1.2, 4, 16),
-    new THREE.MeshStandardMaterial({ color: 0xef4444 })
-);
-ai.position.set(20, 2, 0);
-scene.add(ai);
-
-// ================= BALL =================
-const ball = new THREE.Mesh(
-    new THREE.SphereGeometry(1, 16, 16),
-    new THREE.MeshStandardMaterial({ color: 0xffffff })
-);
-ball.position.set(0, 1, 0);
-scene.add(ball);
-
-let ballVelocity = new THREE.Vector3();
-
-// ================= INPUT =================
-const keys = {};
-document.addEventListener("keydown", e => keys[e.code] = true);
-document.addEventListener("keyup", e => keys[e.code] = false);
-
-// ================= TIME =================
-let matchTime = 0;
-setInterval(() => {
-    matchTime++;
-    document.getElementById("time").innerText = matchTime;
-}, 1000);
-
-// ================= GAME LOOP =================
-function animate() {
-    requestAnimationFrame(animate);
-
-    // Player movement
-    if (keys["KeyW"]) player.position.z -= 0.4;
-    if (keys["KeyS"]) player.position.z += 0.4;
-    if (keys["KeyA"]) player.position.x -= 0.4;
-    if (keys["KeyD"]) player.position.x += 0.4;
-
-    // Shoot
-    if (keys["Space"] && player.position.distanceTo(ball.position) < 3) {
-        ballVelocity.x = 0.8;
-        ballVelocity.z = (ball.position.z - player.position.z) * 0.2;
-    }
-
-    // AI movement
-    ai.position.z += (ball.position.z - ai.position.z) * 0.02;
-    if (ai.position.distanceTo(ball.position) < 3) {
-        ballVelocity.x = -0.7;
-    }
-
-    // Ball physics
-    ball.position.add(ballVelocity);
-    ballVelocity.multiplyScalar(0.98);
-
-    renderer.render(scene, camera);
-}
-
-animate();
-
-// ================= RESIZE =================
-window.addEventListener("resize", () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-});
-</script>
-
+<script src="js/teams.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
