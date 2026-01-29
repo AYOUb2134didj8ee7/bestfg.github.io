@@ -1,18 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Your | Football Matches</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>eFootball Offline 2026</title>
+
+    <!-- Icon -->
+    <link rel="icon" type="image/png" href="icon.png">
+
+    <!-- Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0f1c, #0f172a);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .game-container {
+            width: 95%;
+            max-width: 1100px;
+            background: #020617;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 40px rgba(0,255,255,0.2);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #38bdf8;
+        }
+
+        .stadium {
+            background: url("https://i.imgur.com/4NJl2fQ.jpg");
+            background-size: cover;
+            border-radius: 15px;
+            height: 420px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .scoreboard {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            padding: 10px 25px;
+            border-radius: 10px;
+            font-size: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .time {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            padding: 8px 15px;
+            border-radius: 10px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .controls button {
+            background: #0284c7;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .controls button:hover {
+            background: #38bdf8;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 15px;
+            opacity: 0.6;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <h1> Fuck U Lautaroooooooooooooooooooooooooooooooooooooo </h1>
-        <h2> Jdt Alik ? Malla Mnyk hhhhhhhhhhhhhhhhh </h2>
-            <h3> Aya O5rj Mn web cht3chg Sabben </h3>
-                 <h4> Talla3ni Nswrhoo w nb3thholik  </h4>
+<div class="game-container">
+
+    <div class="header">
+        <img src="icon.png" alt="Game Icon">
+        <h1>eFootball Offline 2026</h1>
+    </div>
+
+    <div class="stadium">
+
+        <div class="scoreboard">
+            <span id="teamA">YOU</span>
+            <strong id="score">0 - 0</strong>
+            <span id="teamB">AI</span>
+        </div>
+
+        <div class="time">
+            ⏱ <span id="time">00:00</span>
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <button onclick="startMatch()">▶ Start Match</button>
+        <button onclick="goalYou()">⚽ Goal YOU</button>
+        <button onclick="goalAI()">🤖 Goal AI</button>
+        <button onclick="resetMatch()">🔄 Reset</button>
+    </div>
+
+    <div class="footer">
+        Offline Football Game • AI Ready • 2026
+    </div>
+
+</div>
+
+<script>
+    let minute = 0;
+    let second = 0;
+    let timer;
+    let youScore = 0;
+    let aiScore = 0;
+
+    function startMatch() {
+        clearInterval(timer);
+        timer = setInterval(() => {
+            second++;
+            if (second === 60) {
+                second = 0;
+                minute++;
+            }
+
+            document.getElementById("time").innerText =
+                String(minute).padStart(2, "0") + ":" +
+                String(second).padStart(2, "0");
+
+            if (minute === 90) {
+                clearInterval(timer);
+                alert("🏁 Match Ended!");
+            }
+        }, 1000);
+    }
+
+    function goalYou() {
+        youScore++;
+        updateScore();
+    }
+
+    function goalAI() {
+        aiScore++;
+        updateScore();
+    }
+
+    function updateScore() {
+        document.getElementById("score").innerText =
+            youScore + " - " + aiScore;
+    }
+
+    function resetMatch() {
+        clearInterval(timer);
+        minute = 0;
+        second = 0;
+        youScore = 0;
+        aiScore = 0;
+        document.getElementById("time").innerText = "00:00";
+        updateScore();
+    }
+</script>
 
 </body>
 </html>
-
